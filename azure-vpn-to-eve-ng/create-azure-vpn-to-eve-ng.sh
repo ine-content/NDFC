@@ -23,22 +23,26 @@ LOCAL_ADDRESS_SPACE="10.199.199.0/24" # MGMT0 subnet for N9Kv's in EVE-NG
 CONNECTION_NAME="NexusDashboard-to-EVE-NG-Connection"
 
 # Verify the Virtual Network exists
+echo "# Verify the Virtual Network exists"
  az network vnet show  \
   --resource-group $RESOURCE_GROUP \
   --name $VNET_NAME
 
 # Add IP address space to Virtual Network for GatewaySubnet 
+echo "# Add IP address space to Virtual Network for GatewaySubnet"
 az network vnet update \
   --resource-group $RESOURCE_GROUP \
   --name $VNET_NAME \
   --add addressSpace.addressPrefixes $NEW_SUBNET
 
 # Verify the new IP address space was added
+echo "# Verify the new IP address space was added"
  az network vnet show  \
   --resource-group $RESOURCE_GROUP \
   --name $VNET_NAME
 
 # Create the GatewaySubnet
+echo "# Create the GatewaySubnet"
 az network vnet subnet create \
   --resource-group $RESOURCE_GROUP \
   --vnet-name $VNET_NAME \
@@ -46,12 +50,14 @@ az network vnet subnet create \
   --address-prefixes $GATEWAY_SUBNET
 
 # Verify the GatewaySubnet was created 
+echo "# Verify the GatewaySubnet was created" 
 az network vnet subnet show \
   --resource-group $RESOURCE_GROUP \
   --vnet-name $VNET_NAME \
   --name GatewaySubnet
 
 # Create the public IP for the Virtual Network Gateway
+echo "# Create the public IP for the Virtual Network Gateway"
 az network public-ip create \
   --resource-group $RESOURCE_GROUP \
   --name $PUBLIC_IP_NAME \
@@ -61,11 +67,13 @@ az network public-ip create \
   --zone 1 2 3
 
 # Verify the public IP was created
+echo "# Verify the public IP was created"
 az network public-ip show \
   --resource-group $RESOURCE_GROUP \
   --name $PUBLIC_IP_NAME
 
 # Create the Virtual Network Gateway
+echo "# Create the Virtual Network Gateway"
 az network vnet-gateway create \
   --resource-group $RESOURCE_GROUP \
   --name $GATEWAY_NAME \
@@ -78,11 +86,13 @@ az network vnet-gateway create \
   --no-wait
 
 # Verify the Virtual Network Gateway was created
+echo "# Verify the Virtual Network Gateway was created"
 az network vnet-gateway show \
   --resource-group $RESOURCE_GROUP \
   --name $GATEWAY_NAME
 
-# Create the Local Network Gateway
+# Create the Local Network Gateway"
+echo "# Create the Local Network Gateway"
 az network local-gateway create \
   --resource-group $RESOURCE_GROUP \
   --name $LOCAL_GATEWAY_NAME \
@@ -91,11 +101,13 @@ az network local-gateway create \
   --location $LOCATION
 
 # Verify the Local Network Gateway was created
+echo "# Verify the Local Network Gateway was created"
 az network local-gateway show \
   --resource-group $RESOURCE_GROUP \
   --name $LOCAL_GATEWAY_NAME
 
 # Create the connection between the Virtual Network Gateway and the Local Network Gateway
+echo "# Create the connection between the Virtual Network Gateway and the Local Network Gateway"
 az network vpn-connection create \
   --resource-group $RESOURCE_GROUP \
   --name $CONNECTION_NAME \
@@ -104,6 +116,7 @@ az network vpn-connection create \
   --shared-key "cisco1234"
 
 # Verify the connection was created 
+echo "# Verify the connection was created" 
 az network vpn-connection show \
   --resource-group $RESOURCE_GROUP \
   --name $CONNECTION_NAME
