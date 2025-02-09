@@ -16,5 +16,5 @@ nano create-azure-vpn-to-eve-ng.sh
 chmod +x create-azure-vpn-to-eve-ng.sh
 
 # Run the script
-.create-azure-vpn-to-eve-ng.sh
+./create-azure-vpn-to-eve-ng.sh
 
