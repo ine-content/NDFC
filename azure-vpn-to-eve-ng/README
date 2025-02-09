@@ -1,1 +1,20 @@
-README
+#
+# Run this script from an Azure Bash Cloud Shell to create a VPN 
+# from Cisco Nexus Dashboard in Azure to EVE-NG in INE's Lab Cloud. 
+#
+
+# Download the script from an Azure Bash Cloud Shell
+curl -o create-azure-vpn-to-eve-ng.sh https://raw.githubusercontent.com/ine-content/NDFC/main/azure-vpn-to-eve-ng/create-azure-vpn-to-eve-ng.sh
+
+# Edit the script to replace "1.2.3.4" with the Public IP Address shown in 
+# the EVE-NG lab topology launched from my.ine.com
+#
+# Update other variables as necessary, such as RESOURCE_GROUP and LOCATION
+nano create-azure-vpn-to-eve-ng.sh
+
+# Make the script executable 
+chmod +x create-azure-vpn-to-eve-ng.sh
+
+# Run the script
+.create-azure-vpn-to-eve-ng.sh
+
