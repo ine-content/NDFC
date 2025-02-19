@@ -18,9 +18,9 @@ NEW_SUBNET="10.200.1.0/24" # Unique address space for VPN to EVE-NG
 GATEWAY_SUBNET="10.200.1.0/27" # Address for GatewaySubnet object
 GATEWAY_NAME="NexusDashboard-VPN"
 PUBLIC_IP_NAME="${GATEWAY_NAME}-PIP"
-LOCAL_GATEWAY_NAME="NexusDashboard-to-EVE-NG"
+LOCAL_GATEWAY_NAME="${GATEWAY_NAME}-LNG"
 LOCAL_ADDRESS_SPACE="10.199.199.0/24" # MGMT0 subnet for N9Kv's in EVE-NG
-CONNECTION_NAME="NexusDashboard-to-EVE-NG-Connection"
+CONNECTION_NAME="${GATEWAY_NAME}-Connection"
 
 # Verify the Virtual Network exists
 echo "# Verify the Virtual Network exists"
@@ -85,11 +85,30 @@ az network vnet-gateway create \
   --location $LOCATION \
   --no-wait
 
+# Wait for the Virtual Network Gateway to be fully provisioned
+echo -n "Waiting for Virtual Network Gateway to finish creating"
+echo -n "This may take a few minutes..."
+while true; do
+    STATUS=$(az network vnet-gateway show \
+      --resource-group $RESOURCE_GROUP \
+      --name $GATEWAY_NAME \
+      --query "provisioningState" \
+      --output tsv)
+
+    if [ "$STATUS" == "Succeeded" ]; then
+        echo -e "\nVirtual Network Gateway creation completed successfully!"
+        break
+    fi
+    
+    echo -n "."
+    sleep 5
+done
+
 # Verify the Virtual Network Gateway was created
 echo "# Verify the Virtual Network Gateway was created"
 az network vnet-gateway show \
-  --resource-group $RESOURCE_GROUP \
-  --name $GATEWAY_NAME
+ --resource-group $RESOURCE_GROUP \
+ --name $GATEWAY_NAME
 
 # Create the Local Network Gateway"
 echo "# Create the Local Network Gateway"
