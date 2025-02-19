@@ -86,7 +86,7 @@ az network vnet-gateway create \
   --no-wait
 
 # Wait for the Virtual Network Gateway to be fully provisioned
-echo -n "Waiting for Virtual Network Gateway to finish creating"
+echo "Waiting for Virtual Network Gateway to finish creating"
 echo -n "This may take a few minutes..."
 while true; do
     STATUS=$(az network vnet-gateway show \
