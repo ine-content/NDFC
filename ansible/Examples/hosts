@@ -1,0 +1,3 @@
+# hosts file for Ansible playbook
+[ndfc]
+10.200.0.4

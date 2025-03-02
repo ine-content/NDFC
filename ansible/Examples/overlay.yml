@@ -1,0 +1,8 @@
+---
+# main playbook
+
+- name: Create Overlay
+  hosts: ndfc
+  gather_facts: false
+  roles:
+    - create-overlay

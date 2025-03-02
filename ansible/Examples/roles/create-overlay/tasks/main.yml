@@ -1,0 +1,12 @@
+---
+# tasks file for roles/create-overlay
+
+- name: Create Tenant VRF
+  cisco.dcnm.dcnm_vrf:
+    fabric: "{{ fabric.name }}"
+    config: "{{ vrfs }}"
+
+- name: Create Networks
+  cisco.dcnm.dcnm_network:
+    fabric: "{{ fabric.name }}"
+    config: "{{ networks }}"
