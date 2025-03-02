@@ -16,40 +16,40 @@ vrfs:
     vrf_id: 50001
     vlan_id: 2001
     attach:
-      - ip_address: 10.3.8.13
-      - ip_address: 10.3.8.18
+#      - ip_address: 10.3.8.13
+#      - ip_address: 10.3.8.18
 
 networks:
   - net_name: AnsibleNet1
     vrf_name: AnsibleVRF
-    net_id: 30002
-    vlan_id: 2302
+    net_id: 30012
+    vlan_id: 2312
     vlan_name: AnsibleNet1
     gw_ip_subnet: "172.16.1.1/24"
     mtu_l3intf: 9216
-    attach:
-      - ip_address: 10.3.8.13
-        ports:
-          - Ethernet1/7
-      - ip_address: 10.3.8.14
-        ports: []
-      - ip_address: 10.3.8.18
-        ports:
-          - Ethernet1/7
+#    attach:
+#      - ip_address: 10.3.8.13
+#        ports:
+#          - Ethernet1/7
+#      - ip_address: 10.3.8.14
+#        ports: []
+#      - ip_address: 10.3.8.18
+#        ports:
+#          - Ethernet1/7
   - net_name: AnsibleNet2
     vrf_name: AnsibleVRF
-    net_id: 30003
-    vlan_id: 2303
+    net_id: 30013
+    vlan_id: 2313
     vlan_name: AnsibleNet2
     gw_ip_subnet: "172.16.2.1/24"
     mtu_l3intf: 9216
-    attach:
-      - ip_address: 10.3.8.13
-        ports:
-          - Ethernet1/8
-      - ip_address: 10.3.8.14
-        ports: []
-      - ip_address: 10.3.8.18
-        ports:
-          - Ethernet1/8
+#    attach:
+#      - ip_address: 10.3.8.13
+#        ports:
+#          - Ethernet1/8
+#      - ip_address: 10.3.8.14
+#        ports: []
+#      - ip_address: 10.3.8.18
+#        ports:
+#          - Ethernet1/8
 
